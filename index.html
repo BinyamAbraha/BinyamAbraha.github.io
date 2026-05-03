@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Binyam Abraha — Data, Software Engineering & Robotics. CS Senior at Cal State East Bay." />
+  <title>Binyam Abraha — Portfolio</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
+  <!-- AOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    /* ── Hero ─────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      gap: 60px;
+      padding-top: 100px;
+    }
+
+    .hero-content { padding: 60px 0; }
+
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-muted);
+      border: 1px solid rgba(200, 92, 45, 0.2);
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 28px;
+    }
+
+    .hero-label i { font-size: 0.7rem; }
+
+    .hero-title {
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      line-height: 1.0;
+      margin-bottom: 12px;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-title .name-last {
+      color: var(--accent);
+    }
+
+    .hero-role {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+      min-height: 2em;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-bio {
+      font-size: 1.0625rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 40px;
+      max-width: 52ch;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 56px;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 40px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-num span { color: var(--accent); }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 500;
+    }
+
+    /* ── Hero Image ───────────────────────────────────────── */
+    .hero-image-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-image-frame {
+      position: relative;
+      width: 420px;
+      height: 520px;
+    }
+
+    .hero-img-placeholder {
+      width: 100%;
+      height: 100%;
+      border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%;
+      background: linear-gradient(135deg, var(--accent-muted) 0%, var(--bg-secondary) 100%);
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      animation: float 6s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    .hero-img-placeholder img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+    }
+
+    .hero-img-placeholder .placeholder-icon {
+      font-size: 5rem;
+      opacity: 0.3;
+    }
+
+    /* Decorative orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    .orb-1 {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(200, 92, 45, 0.18) 0%, transparent 70%);
+      top: -60px;
+      right: -60px;
+    }
+
+    .orb-2 {
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(200, 92, 45, 0.1) 0%, transparent 70%);
+      bottom: -40px;
+      left: -40px;
+    }
+
+    /* Floating badge */
+    .hero-badge {
+      position: absolute;
+      bottom: 40px;
+      right: -20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: float 5s ease-in-out infinite;
+      animation-delay: 1s;
+    }
+
+    .hero-badge-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-muted);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+    }
+
+    .hero-badge-text {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.3;
+    }
+
+    .hero-badge-sub {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    /* Scroll hint */
+    .hero-scroll {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-family: var(--font-display);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll i { font-size: 0.9rem; }
+
+    /* ── About Section ────────────────────────────────────── */
+    .about {
+      background: var(--bg-secondary);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+      font-size: 1.0625rem;
+      line-height: 1.8;
+      max-width: 100%;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .about-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .about-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-display);
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      padding: 10px 20px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border-strong);
+      transition: all var(--transition);
+    }
+
+    .about-link:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      background: var(--accent-muted);
+    }
+
+    /* About sidebar */
+    .about-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .info-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .info-card-title {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+
+    .info-item i {
+      width: 18px;
+      color: var(--accent);
+      font-size: 0.85rem;
+    }
+
+    .hobby-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .hobby-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      padding: 8px 12px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-sm);
+    }
+
+    .hobby-item i {
+      color: var(--accent);
+      font-size: 0.8rem;
+    }
+
+    /* ── Skills Section ───────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .skill-category {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition);
+    }
+
+    .skill-category:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .skill-category-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      background: var(--accent-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.25rem;
+      margin-bottom: 20px;
+    }
+
+    .skill-category-title {
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-tag {
+      font-size: 0.78rem;
+      font-family: var(--font-display);
+      font-weight: 500;
+      padding: 5px 12px;
+      border-radius: 100px;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      border: 1px solid var(--border);
+      transition: all var(--transition);
+    }
+
+    .skill-category:hover .skill-tag {
+      background: var(--accent-muted);
+      color: var(--accent);
+      border-color: rgba(200, 92, 45, 0.2);
+    }
+
+    /* ── Responsive ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; text-align: center; min-height: auto; padding-top: 120px; }
+      .hero-image-wrap { display: none; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .hero-bio { margin: 0 auto 40px; }
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-stats { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ───────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">B<span>.</span>Abraha</a>
+
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link active">Home</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="contact.html" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="nav-mobile" id="navMobile">
+    <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+    <a href="projects.html" class="nav-link" onclick="closeMenu()">Projects</a>
+    <a href="blog.html" class="nav-link" onclick="closeMenu()">Blog</a>
+    <a href="contact.html" class="nav-link" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <!-- ── Hero Section ─────────────────────────────────────── -->
+  <section class="hero container">
+    <div class="hero-content">
+      <div class="hero-label">
+        <i class="fas fa-circle pulse" style="color: var(--accent); font-size: 0.5rem;"></i>
+        Available for opportunities
+      </div>
+
+      <h1 class="hero-title">
+        Binyam<br>
+        <span class="name-last">Abraha</span>
+      </h1>
+
+      <div class="hero-role">
+        <span id="typewriter"></span>
+        <span class="cursor"></span>
+      </div>
+
+      <p class="hero-bio">
+        I'm a senior CS student at Cal State East Bay with a relentless curiosity
+        for how complex systems work at their core. From building iOS apps and data
+        pipelines to assembling a DIY AI-powered smart home speaker — I'm drawn to
+        the full spectrum of tech.
+      </p>
+
+      <div class="hero-actions">
+        <a href="projects.html" class="btn btn-primary">
+          <i class="fas fa-folder-open"></i> View My Work
+        </a>
+        <a href="assets/resume.pdf" class="btn btn-secondary" download>
+          <i class="fas fa-download"></i> Download CV
+        </a>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">3<span>+</span></div>
+          <div class="stat-label">Years Coding</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5<span>+</span></div>
+          <div class="stat-label">Projects Built</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4<span>+</span></div>
+          <div class="stat-label">Tech Domains</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Image -->
+    <div class="hero-image-wrap hero-image">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="hero-image-frame">
+        <div class="hero-img-placeholder">
+          <!-- Replace with: <img src="assets/images/profile.jpg" alt="Binyam Abraha"> -->
+          <i class="fas fa-user placeholder-icon"></i>
+        </div>
+
+        <!-- Floating badge -->
+        <div class="hero-badge">
+          <div class="hero-badge-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <div>
+            <div class="hero-badge-text">Cal State East Bay</div>
+            <div class="hero-badge-sub">Computer Science, Senior</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <i class="fas fa-chevron-down scroll-arrow"></i>
+    </div>
+  </section>
+
+  <!-- ── About Section ─────────────────────────────────────── -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="section-label">About Me</div>
+
+      <div class="about-grid">
+        <!-- Bio Text -->
+        <div class="about-text" data-aos="fade-right">
+          <h2 class="section-title">Builder. Thinker.<br>Lifelong Learner.</h2>
+
+          <p>
+            I'm Binyam Abraha — a senior CS student at Cal State East Bay, future AI &
+            Machine Learning grad student, and someone who genuinely can't stop building things.
+            My curiosity runs deep: I want to understand how things work at the base level,
+            which is what pulled me into tech and keeps me sharp across software engineering,
+            data, robotics, and AI.
+          </p>
+          <p>
+            Outside of code, you'll find me training Muay Thai, hiking, cooking, or tending
+            to my garden — hobbies that all share the same theme: discipline, patience, and
+            showing up consistently. That same mindset drives my technical work.
+          </p>
+          <p>
+            Long term, I want to push my potential as far as it goes in data and robotics,
+            and eventually open my own restaurant — because my love for feeding people is just
+            as real as my love for engineering. I also hope to open a school, library, and
+            gym back home in Tigray, Ethiopia. Whatever I build, I want it to matter.
+          </p>
+
+          <div class="about-links">
+            <a href="https://github.com/BinyamAbraha" class="about-link" target="_blank">
+              <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="https://linkedin.com/in/" class="about-link" target="_blank">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="contact.html" class="about-link">
+              <i class="fas fa-envelope"></i> Contact Me
+            </a>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="about-sidebar" data-aos="fade-left">
+          <div class="info-card">
+            <div class="info-card-title">Quick Info</div>
+            <div class="info-list">
+              <div class="info-item">
+                <i class="fas fa-university"></i>
+                Cal State East Bay
+              </div>
+              <div class="info-item">
+                <i class="fas fa-code"></i>
+                Computer Science, Senior
+              </div>
+              <div class="info-item">
+                <i class="fas fa-brain"></i>
+                Pursuing MS in AI & ML
+              </div>
+              <div class="info-item">
+                <i class="fas fa-map-marker-alt"></i>
+                Bay Area, California
+              </div>
+              <div class="info-item">
+                <i class="fas fa-briefcase"></i>
+                Open to Data, SWE & Robotics Roles
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-title">Outside the Code</div>
+            <div class="hobby-grid">
+              <div class="hobby-item"><i class="fas fa-utensils"></i> Cooking</div>
+              <div class="hobby-item"><i class="fas fa-fist-raised"></i> Muay Thai</div>
+              <div class="hobby-item"><i class="fas fa-mountain"></i> Hiking</div>
+              <div class="hobby-item"><i class="fas fa-basketball-ball"></i> Basketball</div>
+              <div class="hobby-item"><i class="fas fa-dumbbell"></i> Gym</div>
+              <div class="hobby-item"><i class="fas fa-seedling"></i> Gardening</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Skills Section ────────────────────────────────────── -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label" data-aos="fade-up">Technical Skills</div>
+      <h2 class="section-title" data-aos="fade-up" data-aos-delay="50">My Toolkit</h2>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+        A broad foundation across data, software, and intelligent systems.
+      </p>
+
+      <div class="skills-grid">
+
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="0">
+          <div class="skill-category-icon"><i class="fas fa-code"></i></div>
+          <div class="skill-category-title">Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Swift</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">HTML/CSS</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Bash</span>
+          </div>
+        </div>
+
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="80">
+          <div class="skill-category-icon"><i class="fas fa-chart-bar"></i></div>
+          <div class="skill-category-title">Data & Analytics</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">PostgreSQL</span>
+          </div>
+        </div>
+
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="160">
+          <div class="skill-category-icon"><i class="fas fa-brain"></i></div>
+          <div class="skill-category-title">AI & Machine Learning</div>
+          <div class="skill-tags">
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">LLMs</span>
+            <span class="skill-tag">Gemma</span>
+            <span class="skill-tag">Ollama</span>
+            <span class="skill-tag">RAG</span>
+          </div>
+        </div>
+
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="0">
+          <div class="skill-category-icon"><i class="fab fa-apple"></i></div>
+          <div class="skill-category-title">iOS Development</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Swift</span>
+            <span class="skill-tag">SwiftUI</span>
+            <span class="skill-tag">UIKit</span>
+            <span class="skill-tag">Xcode</span>
+            <span class="skill-tag">CoreML</span>
+          </div>
+        </div>
+
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="80">
+          <div class="skill-category-icon"><i class="fas fa-globe"></i></div>
+          <div class="skill-category-title">Web & Backend</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express</span>
+            <span class="skill-tag">REST APIs</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">Git/GitHub</span>
+          </div>
+        </div>
+
+        <div class="skill-category" data-aos="fade-up" data-aos-delay="160">
+          <div class="skill-category-icon"><i class="fas fa-robot"></i></div>
+          <div class="skill-category-title">Hardware & Robotics</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Raspberry Pi</span>
+            <span class="skill-tag">Edge AI</span>
+            <span class="skill-tag">IoT</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">Local LLMs</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer style="background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 48px 0;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; margin-bottom: 4px;">B<span style="color: var(--accent);">.</span>Abraha</div>
+        <div style="font-size: 0.85rem; color: var(--text-muted);">Built with curiosity & caffeine.</div>
+      </div>
+      <div style="display: flex; gap: 16px;">
+        <a href="https://github.com/BinyamAbraha" target="_blank" style="color: var(--text-muted); font-size: 1.2rem; transition: color var(--transition);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/" target="_blank" style="color: var(--text-muted); font-size: 1.2rem; transition: color var(--transition);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fab fa-linkedin"></i></a>
+        <a href="contact.html" style="color: var(--text-muted); font-size: 1.2rem; transition: color var(--transition);" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--text-muted)'"><i class="fas fa-envelope"></i></a>
+      </div>
+      <div style="font-size: 0.8rem; color: var(--text-muted);">© 2025 Binyam Abraha. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- ── Scripts ───────────────────────────────────────────── -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // Typewriter
+    const roles = [
+      'Data Analyst',
+      'Software Engineer',
+      'iOS Developer',
+      'ML Enthusiast',
+      'Robotics Builder',
+      'Problem Solver'
+    ];
+    let roleIndex = 0, charIndex = 0, deleting = false;
+    const el = document.getElementById('typewriter');
+
+    function type() {
+      const current = roles[roleIndex];
+      if (deleting) {
+        el.textContent = current.substring(0, charIndex--);
+        if (charIndex < 0) { deleting = false; roleIndex = (roleIndex + 1) % roles.length; setTimeout(type, 500); return; }
+      } else {
+        el.textContent = current.substring(0, charIndex++);
+        if (charIndex > current.length) { deleting = true; setTimeout(type, 1800); return; }
+      }
+      setTimeout(type, deleting ? 50 : 90);
+    }
+    setTimeout(type, 800);
+  </script>
+
+</body>
+</html>

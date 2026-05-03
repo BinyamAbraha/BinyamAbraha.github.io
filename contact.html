@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Binyam Abraha — Let's work together." />
+  <title>Contact — Binyam Abraha</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    .page-header {
+      padding: 160px 0 80px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-header-label {
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    /* ── Contact Grid ─────────────────────────────────────── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    /* ── Contact Info ─────────────────────────────────────── */
+    .contact-info-title {
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+    }
+
+    .contact-info-text {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      line-height: 1.75;
+      margin-bottom: 40px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-bottom: 40px;
+    }
+
+    .contact-link-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      transition: all var(--transition);
+      text-decoration: none;
+    }
+
+    .contact-link-item:hover {
+      border-color: var(--accent);
+      background: var(--accent-muted);
+      transform: translateX(4px);
+    }
+
+    .contact-link-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--accent-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-link-info { flex: 1; }
+
+    .contact-link-label {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+
+    .contact-link-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .contact-link-arrow {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      transition: color var(--transition);
+    }
+
+    .contact-link-item:hover .contact-link-arrow {
+      color: var(--accent);
+    }
+
+    /* Resume Download */
+    .resume-btn {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 24px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: var(--radius-md);
+      font-family: var(--font-display);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all var(--transition);
+      box-shadow: 0 4px 20px rgba(200, 92, 45, 0.3);
+    }
+
+    .resume-btn:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(200, 92, 45, 0.4);
+    }
+
+    /* ── Contact Form ─────────────────────────────────────── */
+    .contact-form-wrap {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 48px;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-title {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .form-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .form-group.full { grid-column: span 2; }
+
+    .form-label {
+      font-family: var(--font-display);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .form-input,
+    .form-textarea {
+      width: 100%;
+      padding: 14px 18px;
+      background: var(--bg-secondary);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      transition: all var(--transition);
+      outline: none;
+      resize: none;
+    }
+
+    .form-input:focus,
+    .form-textarea:focus {
+      border-color: var(--accent);
+      background: var(--bg-card);
+      box-shadow: 0 0 0 4px var(--accent-muted);
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-textarea { height: 140px; }
+
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: var(--radius-md);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      transition: all var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 4px 20px rgba(200, 92, 45, 0.3);
+      margin-top: 8px;
+    }
+
+    .form-submit:hover {
+      background: var(--accent-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(200, 92, 45, 0.4);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Status Messages */
+    .form-status {
+      display: none;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .form-status.success {
+      display: block;
+      background: rgba(34, 197, 94, 0.1);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      color: #16a34a;
+    }
+
+    .form-status.error {
+      display: block;
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      color: #dc2626;
+    }
+
+    /* ── Responsive ───────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    @media (max-width: 600px) {
+      .contact-form-wrap { padding: 28px 24px; }
+      .form-row { grid-template-columns: 1fr; }
+      .form-group.full { grid-column: span 1; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ───────────────────────────────────────── -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">B<span>.</span>Abraha</a>
+      <ul class="nav-links">
+        <li><a href="index.html" class="nav-link">Home</a></li>
+        <li><a href="projects.html" class="nav-link">Projects</a></li>
+        <li><a href="blog.html" class="nav-link">Blog</a></li>
+        <li><a href="contact.html" class="nav-link active">Contact</a></li>
+      </ul>
+      <div class="nav-controls">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <i class="fas fa-moon" id="themeIcon"></i>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div class="nav-mobile" id="navMobile">
+    <a href="index.html" class="nav-link" onclick="closeMenu()">Home</a>
+    <a href="projects.html" class="nav-link" onclick="closeMenu()">Projects</a>
+    <a href="blog.html" class="nav-link" onclick="closeMenu()">Blog</a>
+    <a href="contact.html" class="nav-link" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <!-- ── Page Header ───────────────────────────────────────── -->
+  <div class="page-header">
+    <div class="container">
+      <div class="page-header-label">Get In Touch</div>
+      <h1>Let's Connect</h1>
+      <p>Open to opportunities, collaborations, and interesting conversations.</p>
+    </div>
+  </div>
+
+  <!-- ── Contact Section ───────────────────────────────────── -->
+  <section>
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left: Info -->
+        <div data-aos="fade-right">
+          <h3 class="contact-info-title">I'd love to hear from you.</h3>
+          <p class="contact-info-text">
+            Whether you're a recruiter, a potential collaborator, or just someone who wants to talk
+            data, robotics, or AI — my inbox is always open.
+          </p>
+
+          <div class="contact-links">
+            <a href="mailto:your@email.com" class="contact-link-item">
+              <div class="contact-link-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-link-info">
+                <div class="contact-link-label">Email</div>
+                <div class="contact-link-value">your@email.com</div>
+              </div>
+              <i class="fas fa-arrow-right contact-link-arrow"></i>
+            </a>
+
+            <a href="https://linkedin.com/in/" target="_blank" class="contact-link-item">
+              <div class="contact-link-icon"><i class="fab fa-linkedin"></i></div>
+              <div class="contact-link-info">
+                <div class="contact-link-label">LinkedIn</div>
+                <div class="contact-link-value">linkedin.com/in/binyam-abraha</div>
+              </div>
+              <i class="fas fa-arrow-right contact-link-arrow"></i>
+            </a>
+
+            <a href="https://github.com/BinyamAbraha" target="_blank" class="contact-link-item">
+              <div class="contact-link-icon"><i class="fab fa-github"></i></div>
+              <div class="contact-link-info">
+                <div class="contact-link-label">GitHub</div>
+                <div class="contact-link-value">github.com/BinyamAbraha</div>
+              </div>
+              <i class="fas fa-arrow-right contact-link-arrow"></i>
+            </a>
+          </div>
+
+          <a href="assets/resume.pdf" class="resume-btn" download>
+            <i class="fas fa-file-pdf"></i>
+            Download My Resume
+          </a>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="contact-form-wrap" data-aos="fade-left">
+          <div class="form-title">Send a Message</div>
+          <div class="form-subtitle">I typically respond within 24 hours.</div>
+
+          <div id="contactForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="firstName">First Name</label>
+                <input type="text" id="firstName" class="form-input" placeholder="John" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">Last Name</label>
+                <input type="text" id="lastName" class="form-input" placeholder="Doe" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="email">Email</label>
+              <input type="email" id="email" class="form-input" placeholder="john@company.com" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="subject">Subject</label>
+              <input type="text" id="subject" class="form-input" placeholder="Job Opportunity / Collaboration / Just saying hi" required />
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea id="message" class="form-textarea" placeholder="Tell me what's on your mind..." required></textarea>
+            </div>
+
+            <button type="button" class="form-submit" id="submitBtn" onclick="sendEmail()">
+              <i class="fas fa-paper-plane"></i>
+              Send Message
+            </button>
+
+            <div class="form-status" id="formStatus"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ────────────────────────────────────────────── -->
+  <footer style="background: var(--bg-secondary); border-top: 1px solid var(--border); padding: 48px 0; margin-top: 60px;">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;">
+      <div>
+        <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; margin-bottom: 4px;">B<span style="color: var(--accent);">.</span>Abraha</div>
+        <div style="font-size: 0.85rem; color: var(--text-muted);">Built with curiosity & caffeine.</div>
+      </div>
+      <div style="font-size: 0.8rem; color: var(--text-muted);">© 2025 Binyam Abraha. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script src="js/main.js"></script>
+
+  <script>
+    // ── EmailJS Setup ──────────────────────────────────────
+    // IMPORTANT: Replace these with your own EmailJS credentials
+    // Sign up free at https://emailjs.com
+    // Tutorial comment: go to EmailJS > Email Services > Add Service, then
+    // Email Templates > Create Template, then Account > Public Key
+    const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // from Account > Public Key
+    const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // from Email Services
+    const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // from Email Templates
+
+    emailjs.init(EMAILJS_PUBLIC_KEY);
+
+    function sendEmail() {
+      const btn    = document.getElementById('submitBtn');
+      const status = document.getElementById('formStatus');
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName  = document.getElementById('lastName').value.trim();
+      const email     = document.getElementById('email').value.trim();
+      const subject   = document.getElementById('subject').value.trim();
+      const message   = document.getElementById('message').value.trim();
+
+      if (!firstName || !email || !subject || !message) {
+        status.className = 'form-status error';
+        status.textContent = 'Please fill in all required fields.';
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+      status.className = 'form-status';
+
+      const templateParams = {
+        from_name:  `${firstName} ${lastName}`,
+        from_email: email,
+        subject:    subject,
+        message:    message,
+      };
+
+      emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
+        .then(() => {
+          status.className = 'form-status success';
+          status.textContent = '✓ Message sent! I\'ll get back to you soon.';
+          btn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+          document.getElementById('firstName').value = '';
+          document.getElementById('lastName').value  = '';
+          document.getElementById('email').value     = '';
+          document.getElementById('subject').value   = '';
+          document.getElementById('message').value   = '';
+          setTimeout(() => {
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+          }, 3000);
+        })
+        .catch((err) => {
+          console.error('EmailJS error:', err);
+          status.className = 'form-status error';
+          status.textContent = 'Something went wrong. Please email me directly.';
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+        });
+    }
+
+    // Allow Enter key in inputs (not textarea)
+    document.querySelectorAll('.form-input').forEach(input => {
+      input.addEventListener('keypress', e => {
+        if (e.key === 'Enter') sendEmail();
+      });
+    });
+  </script>
+
+</body>
+</html>

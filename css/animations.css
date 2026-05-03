@@ -1,0 +1,162 @@
+/* ============================================================
+   animations.css | Animations & Transitions
+   ============================================================ */
+
+/* ── Page Load Fade ───────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.92); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* ── Typewriter Cursor ────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--accent);
+  margin-left: 4px;
+  vertical-align: middle;
+  animation: blink 1s step-end infinite;
+  border-radius: 2px;
+}
+
+/* ── Hero Entrance ────────────────────────────────────────── */
+.hero-label   { animation: fadeUp 0.6s ease both; animation-delay: 0.1s; }
+.hero-title   { animation: fadeUp 0.6s ease both; animation-delay: 0.25s; }
+.hero-bio     { animation: fadeUp 0.6s ease both; animation-delay: 0.4s; }
+.hero-actions { animation: fadeUp 0.6s ease both; animation-delay: 0.55s; }
+.hero-stats   { animation: fadeUp 0.6s ease both; animation-delay: 0.7s; }
+.hero-image   { animation: scaleIn 0.8s ease both; animation-delay: 0.3s; }
+.hero-scroll  { animation: fadeIn 1s ease both; animation-delay: 1.2s; }
+
+/* ── Floating Animation ───────────────────────────────────── */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ── Pulse ────────────────────────────────────────────────── */
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(200, 92, 45, 0.4); }
+  50%       { box-shadow: 0 0 0 12px rgba(200, 92, 45, 0); }
+}
+
+.pulse {
+  animation: pulse 2.5s ease infinite;
+}
+
+/* ── Skill Bar Fill ───────────────────────────────────────── */
+@keyframes fillBar {
+  from { width: 0%; }
+  to   { width: var(--fill); }
+}
+
+.skill-bar-fill {
+  animation: fillBar 1s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ── Gradient Shift (Hero bg accent) ─────────────────────── */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* ── Scroll Indicator ─────────────────────────────────────── */
+@keyframes scrollBounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50%       { transform: translateY(8px); opacity: 0.5; }
+}
+
+.scroll-arrow {
+  animation: scrollBounce 2s ease infinite;
+}
+
+/* ── Card Hover Shine ─────────────────────────────────────── */
+.card {
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 40%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.06) 50%,
+    rgba(255,255,255,0) 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.7s ease;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  left: 130%;
+}
+
+/* ── Link Underline Slide ─────────────────────────────────── */
+.underline-slide {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-slide::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: width var(--transition);
+  border-radius: 2px;
+}
+
+.underline-slide:hover::after {
+  width: 100%;
+}
+
+/* ── Respect reduced motion ───────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
