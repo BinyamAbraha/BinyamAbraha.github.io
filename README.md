@@ -126,8 +126,8 @@ Edit `js/blog.js` — each post is a JavaScript object with a `content` field wr
 I'm Binyam Abraha, a senior Computer Science student at Cal State East Bay pursuing an MS in AI & Machine Learning. I build across the full tech spectrum — from data pipelines and iOS apps to AI-powered hardware.
 
 - 🔗 [GitHub](https://github.com/BinyamAbraha)
-- 💼 [LinkedIn](https://linkedin.com/in/)
-- 📧 your@email.com
+- 💼 [LinkedIn](https://www.linkedin.com/in/binyam-abraha/)
+- 📧 binyamyabraha@gmail.com
 
 ---
 
